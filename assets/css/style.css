@@ -1,0 +1,35 @@
+body {
+  background: url(../images/electric.jpg)  no-repeat fixed;
+  background-size: cover;
+}
+
+.jumbotron{
+  background-color: rgba(255,255,255,0.6);
+  border: none;
+}
+.character {
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid #3a3a3a;
+}
+.players {
+  margin-bottom: 20px;
+}
+.pic {
+  width: 100%;
+}
+
+h1.title {
+	margin: 0;
+}
+
+.player, .enemy {
+	padding: 10px;
+}
+
+.characterList .pic {
+	max-width: 80px;
+}
+

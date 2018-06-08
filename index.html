@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Electric Dreams RPG</title>
+
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="jumbotron text-center heading">
+  <h1 class="title">Electric Dreams</h1>
+  </div>
+
+  <div class="container players">
+
+    <div class="col-xs-6 col-sm-6 col-md-3 col-md-offset-2">
+      <div class="row text-center">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <div class="panel-title">Player</div>
+          </div>
+          <div class="panel-body"> 
+              <section id="hero">
+                  <div class="sectionBG">&nbsp;</div>
+                  <div class="charContainer">
+                  </div>
+                </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-3 col-md-offset-2">
+      <div class="row text-center">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <div class="panel-title">Enemy</div>
+          </div>
+          <div class="panel-body">
+              <section id="opponent">
+                  <div class="sectionBG">&nbsp;</div>
+                  <div class="charContainer">
+                  </div>
+                </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <section id="message py-5">
+      <div class="msgText text-center">
+        Welcome to Electric Dreams. Pick your producer, and battle through your opponents, only then will you unleash your song on the world. Play through with every producer to hear all their songs!
+      </div>
+  <nav class="jumbotron ">
+    <div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-2 text-right"><h3 class="pickCharacter">Pick An Artist</h3>
+
+    <button type="button" class="btn btn-default btn-lg" id="attack">
+        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Attack!
+      </button><br/><br/>
+      <button type="button" class="btn btn-default btn-lg" id="newGame">
+        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> New Game
+      </button></div>
+
+    <div class="col-xs-12 col-sm-12 col-md-10 text-center">
+        <section id="enemies">
+            <div class="sectionBG">&nbsp;</div>
+            <h2>Characters:</h2>
+            <div class="charContainer">
+            <!-- This blank character is cloned and populated with data by the script -->
+              <div class="character col-xs-3 col-md-2 text-center" id="blank">
+                <div class="portrait"></div>
+                <div class="name"></div>
+                <div class="stats"></div>
+              </div>
+            </div>
+          </section>
+    </div>
+    <div class="row">
+      <div id="anthem"></div>
+    </div>
+  </nav>
+  <script type="text/javascript" src="assets/javascript/game.js"></script>
+	<script type="text/javascript" src="assets/javascript/character-library.js"></script>
+</body>
+</html>
