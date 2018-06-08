@@ -4,7 +4,7 @@ function Character(healthPoints, attackPower, counterAttackPower, name, anthem){
 	this.ap = attackPower;
 	this.cap = counterAttackPower;
 	this.name = name;
-	this.anthem = anthem;
+	this.sc = anthem;
 	this.baseAp = attackPower;
 	this.enemy;
 
@@ -26,7 +26,7 @@ function Character(healthPoints, attackPower, counterAttackPower, name, anthem){
 }
 
 //global variables
-var numOfEnemies = 12;
+var numOfEnemies = 10;
 var characters = [];
 var hero;
 var opponent;
@@ -46,21 +46,23 @@ function gameInit(){
 		var newChar = new Character(charLibrary[random].health, charLibrary[random].attack, charLibrary[random].counterAttack, charLibrary[random].name, charLibrary[random].anthem);
 		characters.push(newChar);
 		// generate new html element
-		var characterElement = $("#enemies .character#blank").clone().prop("id", "char"+i)
+		var characterElement = $("#enemies .character#blank").clone().prop("id", "char"+ i)
 			.appendTo("#enemies .charContainer");
 		characterElement.find(".name").text(newChar.name);
 		characterElement.find(".portrait").html("<img src='"+charLibrary[random].image+"'' alt='"+newChar.name+"'>");
-		characterElement.find(".anthem").html(charLibrary[random].anthem);
+		characterElement.find(".anthem").html(newChar.sc).addClass("hiddenA");
 		characterElement.data({
 			char:i, 
 			ap: newChar.hp, 
 			hp: newChar.hp, 
-			cap: newChar.cap 
+			cap: newChar.cap,
+			sc: newChar.sc
 		});
+
 	}
+
 	// remove blank character html
 	$("#enemies .character#blank").remove();
-
 	// set click events
 	$(".character").on("click", function(){
 		// make this char the hero
@@ -74,8 +76,7 @@ function gameInit(){
 		for (var i = 0; i < characters.length; i++) {
 			if (i === hero){
 				characters[i].enemy = false;
-				$(this).attr("class","character").detach().appendTo("#hero .charContainer").off("click");
-
+				$(this).attr("class","character").detach().appendTo("#hero .charContainer").off("click")
 			} else {
 				characters[i].enemy = true;
 			}
@@ -85,7 +86,6 @@ function gameInit(){
 	    location.reload(false);
 	}).hide();
 	$("#attack").on("click", doFight);
-
 	showStats();
 
 	// set up sound effects
@@ -95,6 +95,8 @@ function gameInit(){
 	sounds[3] = new Audio("assets/sounds/dead.wav");
 	
 }
+
+
 
 function getFromLibrary(){
 	// returns the index of a random character from the library
@@ -107,6 +109,7 @@ function getFromLibrary(){
 	charLibrary[index].inPlay = true;
 	return index
 }
+
 
 function setOpponent(charId){
 	if (waitingForClick){
@@ -167,20 +170,23 @@ function fightOver(winner){
 		showMessage("You and " + characters[opponent].name + " destroyed each other at the same time.", true, "loseMsg");
 		gameOver("lose");
 		sounds[2].play();
-		$("#newGame").show();
+		
 	} else if (winner === hero) {
 		showMessage("You destroyed "+ characters[opponent].name, true, "winMsg");
 		enemiesDefeated++;
 		sounds[1].play();
+		
 	} else if (winner === opponent) {
 		showMessage(characters[opponent].name + " destroyed you.", true, "loseMsg");
+		$("#newGame").show();
 		gameOver("lose");
 		sounds[3].play();
+		
 		
 	}
 	if (enemiesDefeated === characters.length-1){
 		gameOver("win");
-		showMessage(character.anthem)
+		$("#controls #newGame").show();
 	} else if (winner === hero){
 		// game not over, prepare for next round
 		
@@ -195,8 +201,12 @@ function fightOver(winner){
 function gameOver(result){
 	var msgClass = result + "GameMsg";
 	showMessage("<br>Game Over: You " + result + "!", false, msgClass);
+	 if (result === "win"){
+		 $("#hero .anthem").show();}
+		 else{
 	waitingForClick = false;
 	$("#attack").hide();
-	$("#controls #newGame").show();
+}
+	
 }
 $("document").ready(gameInit);
