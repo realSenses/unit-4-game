@@ -170,6 +170,7 @@ function fightOver(winner){
 		showMessage("You and " + characters[opponent].name + " destroyed each other at the same time.", true, "loseMsg");
 		gameOver("lose");
 		sounds[2].play();
+		$("#controls #newGame").show();
 		
 	} else if (winner === hero) {
 		showMessage("You destroyed "+ characters[opponent].name, true, "winMsg");
@@ -181,6 +182,7 @@ function fightOver(winner){
 		$("#newGame").show();
 		gameOver("lose");
 		sounds[3].play();
+		$("#controls #newGame").show();
 		
 		
 	}
